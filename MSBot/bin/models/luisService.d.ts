@@ -7,6 +7,6 @@ export declare class LuisService extends ConnectedService implements ILuisServic
     id: string;
     subscriptionKey: string;
     version: string;
-    constructor(source?: Partial<ILuisService>);
-    toJSON(): Partial<ILuisService>;
+    constructor(source: ILuisService);
+    toJSON(): ILuisService;
 }

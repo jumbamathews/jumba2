@@ -5,13 +5,13 @@ export class FileService extends ConnectedService implements IFileService {
     public readonly type = ServiceType.File;
     public filePath = '';
 
-    constructor(source: Partial<IFileService> = {}) {
+    constructor(source: IFileService) {
         super(source);
         const { filePath = '' } = source;
         this.filePath = filePath;
     }
 
-    public toJSON(): Partial<IFileService> {
+    public toJSON(): IFileService {
         let { name = '', id = '', filePath = '' } = this;
         if (!id) {
             id = filePath;

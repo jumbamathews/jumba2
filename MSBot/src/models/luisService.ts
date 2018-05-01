@@ -9,13 +9,13 @@ export class LuisService extends ConnectedService implements ILuisService {
     public subscriptionKey = '';
     public version = '';
 
-    constructor(source: Partial<ILuisService> = {}) {
+    constructor(source: ILuisService) {
         super(source);
         const { appId = '', authoringKey = '', subscriptionKey = '', version = '' } = source;
         Object.assign(this, { appId, authoringKey, subscriptionKey, version });
     }
 
-    public toJSON(): Partial<ILuisService> {
+    public toJSON(): ILuisService {
         let { appId, authoringKey, id, name, subscriptionKey, type, version } = this;
         if (!id) {
             id = appId;

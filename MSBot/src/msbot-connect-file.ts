@@ -55,6 +55,7 @@ async function processConnectFile(config: BotConfig): Promise<BotConfig> {
 
     // add the service
     let newService = new FileService({
+        type: ServiceType.File,
         id: args.filePath,
         name: path.basename(args.filePath),
         filePath: args.filePath

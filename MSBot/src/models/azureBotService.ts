@@ -7,7 +7,7 @@ export class AzureBotService extends ConnectedService implements IAzureBotServic
     public subscriptionId = '';
     public resourceGroup = '';
 
-    constructor(source: Partial<IAzureBotService> = {}) {
+    constructor(source: IAzureBotService) {
         super(source);
         const {  tenantId='', subscriptionId='', resourceGroup='' } = source;
         this.tenantId = tenantId;
@@ -15,7 +15,7 @@ export class AzureBotService extends ConnectedService implements IAzureBotServic
         this.resourceGroup = resourceGroup;
     }
 
-    public toJSON(): Partial<IAzureBotService> {
+    public toJSON(): IAzureBotService {
         let { name, id, tenantId, subscriptionId, resourceGroup } = this;
         return { type: ServiceType.AzureBotService, name, id, tenantId, subscriptionId, resourceGroup };
     }

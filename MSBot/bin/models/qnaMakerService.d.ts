@@ -8,6 +8,6 @@ export declare class QnaMakerService extends ConnectedService implements IQnASer
     subscriptionKey: string;
     hostname: string;
     endpointKey: string;
-    constructor(source?: Partial<IQnAService>);
-    toJSON(): Partial<IQnAService>;
+    constructor(source: IQnAService);
+    toJSON(): IQnAService;
 }

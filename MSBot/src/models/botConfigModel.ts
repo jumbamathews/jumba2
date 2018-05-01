@@ -1,4 +1,4 @@
-import { IBotConfig, IConnectedService, ServiceType } from '../schema';
+import { IBotConfig, IConnectedService, IFileService, ILuisService, IEndpointService, IQnAService, IAzureBotService,  IDispatchService, ServiceType } from '../schema';
 import { AzureBotService } from './azureBotService';
 import { ConnectedService } from './connectedService';
 import { DispatchService } from './dispatchService';
@@ -13,25 +13,25 @@ export class BotConfigModel implements Partial<IBotConfig> {
     public services: IConnectedService[] = new ServicesCollection<ConnectedService>();
     public secretKey = '';
 
-    public static serviceFromJSON(service:Partial<IConnectedService>): ConnectedService {
+    public static serviceFromJSON(service: IConnectedService): ConnectedService {
         switch (service.type) {
             case ServiceType.File:
-                return new FileService(service);
+                return new FileService(<IFileService>service);
 
             case ServiceType.QnA:
-                return new QnaMakerService(service);
+                return new QnaMakerService(<IQnAService>service);
 
             case ServiceType.Dispatch:
-                return new DispatchService(service);
+                return new DispatchService(<IDispatchService>service);
 
             case ServiceType.AzureBotService:
-                return new AzureBotService(service);
+                return new AzureBotService(<IAzureBotService>service);
 
             case ServiceType.Luis:
-                return new LuisService(service);
+                return new LuisService(<ILuisService>service);
 
             case ServiceType.Endpoint:
-                return new EndpointService(service);
+                return new EndpointService(<IEndpointService>service);
 
             default:
                 throw new TypeError(`${service.type} is not a known service implementation.`);
@@ -70,7 +70,7 @@ export class ServicesCollection<T extends ConnectedService> extends Array {
     }
 
     protected set(target: any, prop: PropertyKey, value: any, receiver: any): Function[] | Function | any {
-        if (prop !== 'length' && !( value instanceof ConnectedService )) {
+        if (prop !== 'length' && !(value instanceof ConnectedService)) {
             throw new TypeError(`${Object.prototype.toString.call(value)} does not extend ConnectedService`);
         }
         return target[prop] = value;

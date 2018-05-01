@@ -101,6 +101,7 @@ async function processConnectEndpointArgs(config: BotConfig): Promise<BotConfig>
         idCount++;
     }
     let newService = new EndpointService({
+        type:ServiceType.Endpoint,
         id,
         name: args.name,
         appId: ( args.appId && args.appId.length > 0 ) ? args.appId : '',

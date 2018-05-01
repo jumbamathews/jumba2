@@ -82,6 +82,7 @@ async function processConnectEndpointArgs(config) {
         idCount++;
     }
     let newService = new models_1.EndpointService({
+        type: schema_1.ServiceType.Endpoint,
         id,
         name: args.name,
         appId: (args.appId && args.appId.length > 0) ? args.appId : '',

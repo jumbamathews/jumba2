@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class ConnectedService {
-    constructor(source = {}) {
+    constructor(source) {
         this.id = '';
         this.name = '';
         const { id = '', name = '' } = source;

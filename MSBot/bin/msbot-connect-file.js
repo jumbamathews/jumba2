@@ -5,6 +5,7 @@ const program = require("commander");
 const path = require("path");
 const BotConfig_1 = require("./BotConfig");
 const fileService_1 = require("./models/fileService");
+const schema_1 = require("./schema");
 program.Command.prototype.unknownOption = function (flag) {
     console.error(chalk.default.redBright(`Unknown arguments: ${flag}`));
     program.help();
@@ -46,6 +47,7 @@ async function processConnectFile(config) {
         throw new Error('Bad or missing file');
     // add the service
     let newService = new fileService_1.FileService({
+        type: schema_1.ServiceType.File,
         id: args.filePath,
         name: path.basename(args.filePath),
         filePath: args.filePath
