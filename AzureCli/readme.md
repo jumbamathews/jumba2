@@ -28,7 +28,7 @@ Ensure that you are using the right subscription for creating your bot:
 If needed, change your subscription:
 `az account set --subscription <your-subscription-name>`
 
-You need a resource group (existing or new) to create your bot and related assets. If needed, create a new resource group:
+You need a resource group (existing or new) to create your bot and related assets. If needed, create a new resource group:  
 `az group create -l <resource-group-location> -n <resource-group-name>`
 
 Now create your bot:
